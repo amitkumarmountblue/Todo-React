@@ -1,32 +1,23 @@
-import React, { useState } from "react";
-import TodoForm from "./TodoForm";
-import Todo from "./Todo";
-import Header from "./Header";
+import React from 'react'
 
-function TodoList() {
-  const [todos, setTodos] = useState([]);
-
-  const addTask = (todo) => {
-    setTodos([todo, ...todos]);
-  };
-
-  const updateTask = (todoId, newValue) => {
-    setTodos((todos) =>
-      todos.map((item) => (item.id === todoId ? newValue : item))
-    );
-  };
-
-  const deleteTask = (id) => {
-    setTodos([...todos].filter((todo) => todo.id !== id));
-  };
-
-  return (
-    <>
-      <Header />
-      <TodoForm onSubmit={addTask} />
-      <Todo todos={todos} deleteTask={deleteTask} updateTask={updateTask} />
-    </>
-  );
+function TodoList(props) {
+    return props.todos.map((todo) => (
+        <div id="todo-list" key={todo.id} className="todo">
+          <div className="todo-text">{todo.text}</div>
+          <div className="todo-actions">
+            <button
+              type="submit"
+              onClick={() => props.setEditingText({ id: todo.id, value: todo.text })}
+            >
+              Edit
+            </button>
+            <button type="submit" onClick={() => props.deleteTask(todo.id)}>
+              Delete
+            </button>
+          </div>
+        </div>
+      ));
+    
 }
 
-export default TodoList;
+export default TodoList
