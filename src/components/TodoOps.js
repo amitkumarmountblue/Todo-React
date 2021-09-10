@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TodoForm from "./TodoForm";
-import Todo from "./Todo";
 import Header from "./Header";
+import TodoEdit from "./TodoEdit"
 
 function TodoOps() {
   const [todos, setTodos] = useState([]);
@@ -24,7 +24,7 @@ function TodoOps() {
     <>
       <Header />
       <TodoForm onSubmit={addTask} />
-      <Todo todos={todos} deleteTask={deleteTask} updateTask={updateTask} />
+      <TodoEdit todos={todos} deleteTask={deleteTask} updateTask={updateTask} />
     </>
   );
 }
