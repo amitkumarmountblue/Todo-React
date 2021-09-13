@@ -22,7 +22,7 @@ const Todo = () => {
   };
 
   if (editingText.id) {
-    return <TodoForm editingText={editingText} onSubmit={submitUpdate} />;
+    return <TodoForm editingText={editingText} submitUpdate={submitUpdate} />;
   }
 
   return (

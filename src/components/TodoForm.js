@@ -17,7 +17,7 @@ function TodoForm(props) {
         text: todo,
       });
     }else{
-      props.onSubmit({
+      props.submitUpdate({
         id: Math.floor(Math.random() * 10000),
         text: todo,
       })
