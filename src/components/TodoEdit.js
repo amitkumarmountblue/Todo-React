@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
+import { UserContext } from "./TodoOps";
 
-const Todo = ({ todos, deleteTask, updateTask }) => {
+export const UpdateContext=React.createContext();
+
+
+const Todo = () => {
+  const {updateTask}=useContext(UserContext);
   const [editingText, setEditingText] = useState({
     id: null,
     value: "",
@@ -22,9 +27,11 @@ const Todo = ({ todos, deleteTask, updateTask }) => {
 
   return (
     <>
-    <TodoList todos={todos} setEditingText={setEditingText} deleteTask={deleteTask}/>
+    <UpdateContext.Provider value={{setEditingText}}>
+    <TodoList/>    
+    </UpdateContext.Provider>
     </>
-  )
+    )
 };
 
 export default Todo;

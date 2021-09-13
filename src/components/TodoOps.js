@@ -3,6 +3,8 @@ import TodoForm from "./TodoForm";
 import Header from "./Header";
 import TodoEdit from "./TodoEdit"
 
+export const UserContext=React.createContext();
+
 function TodoOps() {
   const [todos, setTodos] = useState([]);
 
@@ -22,9 +24,11 @@ function TodoOps() {
 
   return (
     <>
-      <Header />
-      <TodoForm onSubmit={addTask} />
-      <TodoEdit todos={todos} deleteTask={deleteTask} updateTask={updateTask} />
+    <UserContext.Provider value={{addTask,todos,deleteTask,updateTask}}>
+      <Header/>
+      <TodoForm />
+      <TodoEdit/>
+    </UserContext.Provider>
     </>
   );
 }

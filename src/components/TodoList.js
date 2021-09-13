@@ -1,17 +1,23 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import { UserContext } from "./TodoOps";
+import { UpdateContext } from "./TodoEdit"
 
-function TodoList(props) {
-    return props.todos.map((todo) => (
-        <div id="todo-list" key={todo.id} className="todo">
+function TodoList() {
+  const {todos,deleteTask}=useContext(UserContext);
+  const {setEditingText}=useContext(UpdateContext);
+
+
+    return todos.map((todo) => (
+        <div key={todo.id} id="todo-list" className="todo">
           <div className="todo-text">{todo.text}</div>
           <div className="todo-actions">
             <button
               type="submit"
-              onClick={() => props.setEditingText({ id: todo.id, value: todo.text })}
+              onClick={() => setEditingText({ id: todo.id, value: todo.text })}
             >
               Edit
             </button>
-            <button type="submit" onClick={() => props.deleteTask(todo.id)}>
+            <button type="submit" onClick={() => deleteTask(todo.id)}>
               Delete
             </button>
           </div>
